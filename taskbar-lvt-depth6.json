@@ -1,0 +1,1731 @@
+{
+  "frameworks": [
+    "win32",
+    "comctl 6.10",
+    "winui3 2.9.2602.17001",
+    "xaml 10.0.26100.8115"
+  ],
+  "root": {
+    "bounds": {
+      "height": 48,
+      "width": 4096,
+      "x": 0,
+      "y": 1680
+    },
+    "children": [
+      {
+        "bounds": {
+          "height": 52428,
+          "width": 52428,
+          "x": 0,
+          "y": 1680
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 48,
+                  "width": 4096,
+                  "x": 0,
+                  "y": 1680
+                },
+                "className": "Windows.UI.Xaml.PopupRoot",
+                "framework": "xaml",
+                "id": "e3",
+                "type": "PopupRoot"
+              },
+              {
+                "bounds": {
+                  "height": 48,
+                  "width": 4096,
+                  "x": 0,
+                  "y": 1680
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 48,
+                      "width": 4096,
+                      "x": 0,
+                      "y": 1680
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 48,
+                          "width": 4096,
+                          "x": 0,
+                          "y": 1680
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 48,
+                              "width": 4096,
+                              "x": 0,
+                              "y": 1680
+                            },
+                            "className": "Windows.UI.Xaml.Controls.Grid",
+                            "framework": "xaml",
+                            "id": "e7",
+                            "type": "Grid"
+                          }
+                        ],
+                        "className": "Windows.UI.Xaml.Controls.Border",
+                        "framework": "xaml",
+                        "id": "e6",
+                        "type": "Border"
+                      }
+                    ],
+                    "className": "Windows.UI.Xaml.Controls.ScrollContentPresenter",
+                    "framework": "xaml",
+                    "id": "e5",
+                    "type": "ScrollContentPresenter"
+                  }
+                ],
+                "className": "Windows.UI.Xaml.Internal.RootScrollViewer",
+                "framework": "xaml",
+                "id": "e4",
+                "type": "RootScrollViewer"
+              }
+            ],
+            "className": "Windows.UI.Xaml.Hosting.DesktopWindowXamlSource",
+            "framework": "xaml",
+            "id": "e2",
+            "type": "DesktopWindowXamlSource"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 1728,
+                  "width": 4096,
+                  "x": 0,
+                  "y": 1680
+                },
+                "className": "Windows.UI.Xaml.PopupRoot",
+                "framework": "xaml",
+                "id": "e462",
+                "type": "PopupRoot"
+              }
+            ],
+            "className": "Windows.UI.Xaml.Hosting.DesktopWindowXamlSource",
+            "framework": "xaml",
+            "id": "e461",
+            "type": "DesktopWindowXamlSource"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 194,
+                  "width": 234,
+                  "x": 0,
+                  "y": 1680
+                },
+                "className": "Windows.UI.Xaml.PopupRoot",
+                "framework": "xaml",
+                "id": "e464",
+                "type": "PopupRoot"
+              },
+              {
+                "bounds": {
+                  "height": 194,
+                  "width": 234,
+                  "x": 0,
+                  "y": 1680
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 194,
+                      "width": 234,
+                      "x": 0,
+                      "y": 1680
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 194,
+                          "width": 234,
+                          "x": 0,
+                          "y": 1680
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 194,
+                              "width": 234,
+                              "x": 0,
+                              "y": 1680
+                            },
+                            "className": "SystemTray.NotificationAreaOverflow",
+                            "framework": "xaml",
+                            "id": "e468",
+                            "type": "NotificationAreaOverflow"
+                          }
+                        ],
+                        "className": "Windows.UI.Xaml.Controls.Border",
+                        "framework": "xaml",
+                        "id": "e467",
+                        "type": "Border"
+                      }
+                    ],
+                    "className": "Windows.UI.Xaml.Controls.ScrollContentPresenter",
+                    "framework": "xaml",
+                    "id": "e466",
+                    "type": "ScrollContentPresenter"
+                  }
+                ],
+                "className": "Windows.UI.Xaml.Internal.RootScrollViewer",
+                "framework": "xaml",
+                "id": "e465",
+                "type": "RootScrollViewer"
+              }
+            ],
+            "className": "Windows.UI.Xaml.Hosting.DesktopWindowXamlSource",
+            "framework": "xaml",
+            "id": "e463",
+            "type": "DesktopWindowXamlSource"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 48,
+                  "width": 1996,
+                  "x": 0,
+                  "y": 1680
+                },
+                "className": "Windows.UI.Xaml.PopupRoot",
+                "framework": "xaml",
+                "id": "e717",
+                "type": "PopupRoot"
+              },
+              {
+                "bounds": {
+                  "height": 48,
+                  "width": 1996,
+                  "x": 0,
+                  "y": 1680
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 48,
+                      "width": 1996,
+                      "x": 0,
+                      "y": 1680
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 48,
+                          "width": 1996,
+                          "x": 0,
+                          "y": 1680
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 48,
+                              "width": 1996,
+                              "x": 0,
+                              "y": 1680
+                            },
+                            "className": "Windows.UI.Xaml.Controls.Grid",
+                            "framework": "xaml",
+                            "id": "e721",
+                            "type": "Grid"
+                          }
+                        ],
+                        "className": "Windows.UI.Xaml.Controls.Border",
+                        "framework": "xaml",
+                        "id": "e720",
+                        "type": "Border"
+                      }
+                    ],
+                    "className": "Windows.UI.Xaml.Controls.ScrollContentPresenter",
+                    "framework": "xaml",
+                    "id": "e719",
+                    "type": "ScrollContentPresenter"
+                  }
+                ],
+                "className": "Windows.UI.Xaml.Internal.RootScrollViewer",
+                "framework": "xaml",
+                "id": "e718",
+                "type": "RootScrollViewer"
+              }
+            ],
+            "className": "Windows.UI.Xaml.Hosting.DesktopWindowXamlSource",
+            "framework": "xaml",
+            "id": "e716",
+            "type": "DesktopWindowXamlSource"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "className": "Windows.UI.Xaml.PopupRoot",
+                "framework": "xaml",
+                "id": "e1038",
+                "type": "PopupRoot"
+              }
+            ],
+            "className": "Windows.UI.Xaml.Hosting.DesktopWindowXamlSource",
+            "framework": "xaml",
+            "id": "e1037",
+            "type": "DesktopWindowXamlSource"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "className": "Windows.UI.Xaml.PopupRoot",
+                "framework": "xaml",
+                "id": "e1040",
+                "type": "PopupRoot"
+              },
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "Windows.UI.Xaml.Controls.UserControl",
+                            "framework": "xaml",
+                            "id": "e1044",
+                            "type": "UserControl"
+                          }
+                        ],
+                        "className": "Windows.UI.Xaml.Controls.Border",
+                        "framework": "xaml",
+                        "id": "e1043",
+                        "type": "Border"
+                      }
+                    ],
+                    "className": "Windows.UI.Xaml.Controls.ScrollContentPresenter",
+                    "framework": "xaml",
+                    "id": "e1042",
+                    "type": "ScrollContentPresenter"
+                  }
+                ],
+                "className": "Windows.UI.Xaml.Internal.RootScrollViewer",
+                "framework": "xaml",
+                "id": "e1041",
+                "type": "RootScrollViewer"
+              }
+            ],
+            "className": "Windows.UI.Xaml.Hosting.DesktopWindowXamlSource",
+            "framework": "xaml",
+            "id": "e1039",
+            "type": "DesktopWindowXamlSource"
+          }
+        ],
+        "className": "Windows.UI.Core.CoreWindow",
+        "framework": "xaml",
+        "id": "e1",
+        "properties": {
+          "enabled": "true",
+          "hwnd": "0x00000000000204B8",
+          "style": "WS_CHILD",
+          "visible": "false"
+        },
+        "text": "DesktopWindowXamlSource",
+        "type": "CoreWindow"
+      },
+      {
+        "bounds": {
+          "height": 48,
+          "width": 46,
+          "x": 1453,
+          "y": 1680
+        },
+        "className": "Start",
+        "framework": "win32",
+        "id": "e1048",
+        "properties": {
+          "enabled": "true",
+          "hwnd": "0x000000000001039A",
+          "style": "WS_CHILD",
+          "visible": "false"
+        },
+        "text": "Start",
+        "type": "Window"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 1680
+        },
+        "className": "TrayDummySearchControl",
+        "framework": "win32",
+        "id": "e1049",
+        "properties": {
+          "enabled": "true",
+          "hwnd": "0x000000000001039C",
+          "style": "WS_OVERLAPPEDWINDOW WS_CHILD WS_VISIBLE",
+          "visible": "true"
+        },
+        "type": "Window"
+      },
+      {
+        "bounds": {
+          "height": 48,
+          "width": 415,
+          "x": 3681,
+          "y": 1680
+        },
+        "className": "TrayNotifyWnd",
+        "framework": "win32",
+        "id": "e1050",
+        "properties": {
+          "enabled": "true",
+          "hwnd": "0x000000000001039E",
+          "style": "WS_CHILD WS_VISIBLE",
+          "visible": "true"
+        },
+        "type": "Window"
+      },
+      {
+        "bounds": {
+          "height": 48,
+          "width": 750,
+          "x": 1453,
+          "y": 1680
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 48,
+              "width": 750,
+              "x": 1453,
+              "y": 1680
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 48,
+                  "width": 750,
+                  "x": 1453,
+                  "y": 1680
+                },
+                "className": "MSTaskListWClass",
+                "framework": "win32",
+                "id": "e1053",
+                "properties": {
+                  "enabled": "true",
+                  "hwnd": "0x00000000000103AA",
+                  "style": "WS_CHILD",
+                  "visible": "false"
+                },
+                "text": "Running applications",
+                "type": "Window"
+              }
+            ],
+            "className": "MSTaskSwWClass",
+            "framework": "win32",
+            "id": "e1052",
+            "properties": {
+              "enabled": "true",
+              "hwnd": "0x00000000000103A6",
+              "style": "WS_OVERLAPPEDWINDOW WS_CHILD WS_VISIBLE",
+              "visible": "true"
+            },
+            "text": "Running applications",
+            "type": "Window"
+          }
+        ],
+        "className": "ReBarWindow32",
+        "framework": "win32",
+        "id": "e1051",
+        "properties": {
+          "enabled": "true",
+          "hwnd": "0x00000000000103A0",
+          "style": "WS_CHILD WS_VISIBLE",
+          "visible": "true"
+        },
+        "type": "Window"
+      },
+      {
+        "bounds": {
+          "height": 48,
+          "width": 4096,
+          "x": 0,
+          "y": 1680
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 1680
+            },
+            "className": "Windows.UI.Input.InputSite.WindowClass",
+            "framework": "win32",
+            "id": "e1055",
+            "properties": {
+              "enabled": "true",
+              "hwnd": "0x00000000000104EA",
+              "style": "WS_CHILD WS_VISIBLE",
+              "visible": "true"
+            },
+            "type": "Window"
+          }
+        ],
+        "className": "Windows.UI.Composition.DesktopWindowContentBridge",
+        "framework": "win32",
+        "id": "e1054",
+        "properties": {
+          "enabled": "true",
+          "hwnd": "0x00000000000104E8",
+          "style": "WS_CHILD WS_VISIBLE",
+          "visible": "true"
+        },
+        "text": "DesktopWindowXamlSource",
+        "type": "Window"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "className": "Microsoft.UI.Xaml.PopupRoot",
+            "framework": "winui3",
+            "id": "e1057",
+            "type": "PopupRoot"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.FileExplorerTabControl",
+                            "framework": "winui3",
+                            "id": "e1062",
+                            "type": "FileExplorerTabControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.NavigationBarControl",
+                            "framework": "winui3",
+                            "id": "e1122",
+                            "text": "NavigationBarControl",
+                            "type": "NavigationBarControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.CommandBarControl",
+                            "framework": "winui3",
+                            "id": "e1370",
+                            "type": "CommandBarControl"
+                          }
+                        ],
+                        "className": "Microsoft.UI.Xaml.Controls.Grid",
+                        "framework": "winui3",
+                        "id": "e1061",
+                        "type": "Grid"
+                      }
+                    ],
+                    "className": "Microsoft.UI.Xaml.Controls.Border",
+                    "framework": "winui3",
+                    "id": "e1060",
+                    "type": "Border"
+                  }
+                ],
+                "className": "Microsoft.UI.Xaml.Controls.ScrollContentPresenter",
+                "framework": "winui3",
+                "id": "e1059",
+                "type": "ScrollContentPresenter"
+              }
+            ],
+            "className": "Microsoft.UI.Xaml.Internal.RootScrollViewer",
+            "framework": "winui3",
+            "id": "e1058",
+            "type": "RootScrollViewer"
+          }
+        ],
+        "className": "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource",
+        "framework": "winui3",
+        "id": "e1056",
+        "type": "DesktopWindowXamlSource"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "className": "Microsoft.UI.Xaml.PopupRoot",
+            "framework": "winui3",
+            "id": "e1431",
+            "type": "PopupRoot"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.FileExplorerTabControl",
+                            "framework": "winui3",
+                            "id": "e1436",
+                            "type": "FileExplorerTabControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.NavigationBarControl",
+                            "framework": "winui3",
+                            "id": "e1496",
+                            "text": "NavigationBarControl",
+                            "type": "NavigationBarControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.CommandBarControl",
+                            "framework": "winui3",
+                            "id": "e1688",
+                            "type": "CommandBarControl"
+                          }
+                        ],
+                        "className": "Microsoft.UI.Xaml.Controls.Grid",
+                        "framework": "winui3",
+                        "id": "e1435",
+                        "type": "Grid"
+                      }
+                    ],
+                    "className": "Microsoft.UI.Xaml.Controls.Border",
+                    "framework": "winui3",
+                    "id": "e1434",
+                    "type": "Border"
+                  }
+                ],
+                "className": "Microsoft.UI.Xaml.Controls.ScrollContentPresenter",
+                "framework": "winui3",
+                "id": "e1433",
+                "type": "ScrollContentPresenter"
+              }
+            ],
+            "className": "Microsoft.UI.Xaml.Internal.RootScrollViewer",
+            "framework": "winui3",
+            "id": "e1432",
+            "type": "RootScrollViewer"
+          }
+        ],
+        "className": "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource",
+        "framework": "winui3",
+        "id": "e1430",
+        "type": "DesktopWindowXamlSource"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "className": "Microsoft.UI.Xaml.PopupRoot",
+            "framework": "winui3",
+            "id": "e1749",
+            "type": "PopupRoot"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "className": "Microsoft.UI.Xaml.Controls.Grid",
+                        "framework": "winui3",
+                        "id": "e1753",
+                        "type": "Grid"
+                      }
+                    ],
+                    "className": "Microsoft.UI.Xaml.Controls.Border",
+                    "framework": "winui3",
+                    "id": "e1752",
+                    "type": "Border"
+                  }
+                ],
+                "className": "Microsoft.UI.Xaml.Controls.ScrollContentPresenter",
+                "framework": "winui3",
+                "id": "e1751",
+                "type": "ScrollContentPresenter"
+              }
+            ],
+            "className": "Microsoft.UI.Xaml.Internal.RootScrollViewer",
+            "framework": "winui3",
+            "id": "e1750",
+            "type": "RootScrollViewer"
+          }
+        ],
+        "className": "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource",
+        "framework": "winui3",
+        "id": "e1748",
+        "type": "DesktopWindowXamlSource"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "className": "Microsoft.UI.Xaml.PopupRoot",
+            "framework": "winui3",
+            "id": "e1755",
+            "type": "PopupRoot"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.FileExplorerTabControl",
+                            "framework": "winui3",
+                            "id": "e1760",
+                            "type": "FileExplorerTabControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.NavigationBarControl",
+                            "framework": "winui3",
+                            "id": "e1820",
+                            "text": "NavigationBarControl",
+                            "type": "NavigationBarControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.CommandBarControl",
+                            "framework": "winui3",
+                            "id": "e2012",
+                            "type": "CommandBarControl"
+                          }
+                        ],
+                        "className": "Microsoft.UI.Xaml.Controls.Grid",
+                        "framework": "winui3",
+                        "id": "e1759",
+                        "type": "Grid"
+                      }
+                    ],
+                    "className": "Microsoft.UI.Xaml.Controls.Border",
+                    "framework": "winui3",
+                    "id": "e1758",
+                    "type": "Border"
+                  }
+                ],
+                "className": "Microsoft.UI.Xaml.Controls.ScrollContentPresenter",
+                "framework": "winui3",
+                "id": "e1757",
+                "type": "ScrollContentPresenter"
+              }
+            ],
+            "className": "Microsoft.UI.Xaml.Internal.RootScrollViewer",
+            "framework": "winui3",
+            "id": "e1756",
+            "type": "RootScrollViewer"
+          }
+        ],
+        "className": "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource",
+        "framework": "winui3",
+        "id": "e1754",
+        "type": "DesktopWindowXamlSource"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "className": "Microsoft.UI.Xaml.PopupRoot",
+            "framework": "winui3",
+            "id": "e2073",
+            "type": "PopupRoot"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.FileExplorerTabControl",
+                            "framework": "winui3",
+                            "id": "e2078",
+                            "type": "FileExplorerTabControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.NavigationBarControl",
+                            "framework": "winui3",
+                            "id": "e2140",
+                            "text": "NavigationBarControl",
+                            "type": "NavigationBarControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.CommandBarControl",
+                            "framework": "winui3",
+                            "id": "e2431",
+                            "type": "CommandBarControl"
+                          }
+                        ],
+                        "className": "Microsoft.UI.Xaml.Controls.Grid",
+                        "framework": "winui3",
+                        "id": "e2077",
+                        "type": "Grid"
+                      }
+                    ],
+                    "className": "Microsoft.UI.Xaml.Controls.Border",
+                    "framework": "winui3",
+                    "id": "e2076",
+                    "type": "Border"
+                  }
+                ],
+                "className": "Microsoft.UI.Xaml.Controls.ScrollContentPresenter",
+                "framework": "winui3",
+                "id": "e2075",
+                "type": "ScrollContentPresenter"
+              }
+            ],
+            "className": "Microsoft.UI.Xaml.Internal.RootScrollViewer",
+            "framework": "winui3",
+            "id": "e2074",
+            "type": "RootScrollViewer"
+          }
+        ],
+        "className": "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource",
+        "framework": "winui3",
+        "id": "e2072",
+        "type": "DesktopWindowXamlSource"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "className": "Microsoft.UI.Xaml.PopupRoot",
+            "framework": "winui3",
+            "id": "e2492",
+            "type": "PopupRoot"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.FileExplorerTabControl",
+                            "framework": "winui3",
+                            "id": "e2497",
+                            "type": "FileExplorerTabControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.NavigationBarControl",
+                            "framework": "winui3",
+                            "id": "e2559",
+                            "text": "NavigationBarControl",
+                            "type": "NavigationBarControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.CommandBarControl",
+                            "framework": "winui3",
+                            "id": "e2775",
+                            "type": "CommandBarControl"
+                          }
+                        ],
+                        "className": "Microsoft.UI.Xaml.Controls.Grid",
+                        "framework": "winui3",
+                        "id": "e2496",
+                        "type": "Grid"
+                      }
+                    ],
+                    "className": "Microsoft.UI.Xaml.Controls.Border",
+                    "framework": "winui3",
+                    "id": "e2495",
+                    "type": "Border"
+                  }
+                ],
+                "className": "Microsoft.UI.Xaml.Controls.ScrollContentPresenter",
+                "framework": "winui3",
+                "id": "e2494",
+                "type": "ScrollContentPresenter"
+              }
+            ],
+            "className": "Microsoft.UI.Xaml.Internal.RootScrollViewer",
+            "framework": "winui3",
+            "id": "e2493",
+            "type": "RootScrollViewer"
+          }
+        ],
+        "className": "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource",
+        "framework": "winui3",
+        "id": "e2491",
+        "type": "DesktopWindowXamlSource"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "className": "Microsoft.UI.Xaml.PopupRoot",
+            "framework": "winui3",
+            "id": "e2836",
+            "type": "PopupRoot"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.FileExplorerTabControl",
+                            "framework": "winui3",
+                            "id": "e2841",
+                            "type": "FileExplorerTabControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.NavigationBarControl",
+                            "framework": "winui3",
+                            "id": "e2901",
+                            "text": "NavigationBarControl",
+                            "type": "NavigationBarControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.CommandBarControl",
+                            "framework": "winui3",
+                            "id": "e3107",
+                            "type": "CommandBarControl"
+                          }
+                        ],
+                        "className": "Microsoft.UI.Xaml.Controls.Grid",
+                        "framework": "winui3",
+                        "id": "e2840",
+                        "type": "Grid"
+                      }
+                    ],
+                    "className": "Microsoft.UI.Xaml.Controls.Border",
+                    "framework": "winui3",
+                    "id": "e2839",
+                    "type": "Border"
+                  }
+                ],
+                "className": "Microsoft.UI.Xaml.Controls.ScrollContentPresenter",
+                "framework": "winui3",
+                "id": "e2838",
+                "type": "ScrollContentPresenter"
+              }
+            ],
+            "className": "Microsoft.UI.Xaml.Internal.RootScrollViewer",
+            "framework": "winui3",
+            "id": "e2837",
+            "type": "RootScrollViewer"
+          }
+        ],
+        "className": "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource",
+        "framework": "winui3",
+        "id": "e2835",
+        "type": "DesktopWindowXamlSource"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "className": "Microsoft.UI.Xaml.PopupRoot",
+            "framework": "winui3",
+            "id": "e3168",
+            "type": "PopupRoot"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.FileExplorerTabControl",
+                            "framework": "winui3",
+                            "id": "e3173",
+                            "type": "FileExplorerTabControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.NavigationBarControl",
+                            "framework": "winui3",
+                            "id": "e3233",
+                            "text": "NavigationBarControl",
+                            "type": "NavigationBarControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.CommandBarControl",
+                            "framework": "winui3",
+                            "id": "e3481",
+                            "type": "CommandBarControl"
+                          }
+                        ],
+                        "className": "Microsoft.UI.Xaml.Controls.Grid",
+                        "framework": "winui3",
+                        "id": "e3172",
+                        "type": "Grid"
+                      }
+                    ],
+                    "className": "Microsoft.UI.Xaml.Controls.Border",
+                    "framework": "winui3",
+                    "id": "e3171",
+                    "type": "Border"
+                  }
+                ],
+                "className": "Microsoft.UI.Xaml.Controls.ScrollContentPresenter",
+                "framework": "winui3",
+                "id": "e3170",
+                "type": "ScrollContentPresenter"
+              }
+            ],
+            "className": "Microsoft.UI.Xaml.Internal.RootScrollViewer",
+            "framework": "winui3",
+            "id": "e3169",
+            "type": "RootScrollViewer"
+          }
+        ],
+        "className": "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource",
+        "framework": "winui3",
+        "id": "e3167",
+        "type": "DesktopWindowXamlSource"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "className": "Microsoft.UI.Xaml.PopupRoot",
+            "framework": "winui3",
+            "id": "e3542",
+            "type": "PopupRoot"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.FileExplorerTabControl",
+                            "framework": "winui3",
+                            "id": "e3547",
+                            "type": "FileExplorerTabControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.NavigationBarControl",
+                            "framework": "winui3",
+                            "id": "e3609",
+                            "text": "NavigationBarControl",
+                            "type": "NavigationBarControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.CommandBarControl",
+                            "framework": "winui3",
+                            "id": "e3816",
+                            "type": "CommandBarControl"
+                          }
+                        ],
+                        "className": "Microsoft.UI.Xaml.Controls.Grid",
+                        "framework": "winui3",
+                        "id": "e3546",
+                        "type": "Grid"
+                      }
+                    ],
+                    "className": "Microsoft.UI.Xaml.Controls.Border",
+                    "framework": "winui3",
+                    "id": "e3545",
+                    "type": "Border"
+                  }
+                ],
+                "className": "Microsoft.UI.Xaml.Controls.ScrollContentPresenter",
+                "framework": "winui3",
+                "id": "e3544",
+                "type": "ScrollContentPresenter"
+              }
+            ],
+            "className": "Microsoft.UI.Xaml.Internal.RootScrollViewer",
+            "framework": "winui3",
+            "id": "e3543",
+            "type": "RootScrollViewer"
+          }
+        ],
+        "className": "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource",
+        "framework": "winui3",
+        "id": "e3541",
+        "type": "DesktopWindowXamlSource"
+      },
+      {
+        "bounds": {
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "children": [
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "className": "Microsoft.UI.Xaml.PopupRoot",
+            "framework": "winui3",
+            "id": "e3877",
+            "type": "PopupRoot"
+          },
+          {
+            "bounds": {
+              "height": 0,
+              "width": 0,
+              "x": 0,
+              "y": 0
+            },
+            "children": [
+              {
+                "bounds": {
+                  "height": 0,
+                  "width": 0,
+                  "x": 0,
+                  "y": 0
+                },
+                "children": [
+                  {
+                    "bounds": {
+                      "height": 0,
+                      "width": 0,
+                      "x": 0,
+                      "y": 0
+                    },
+                    "children": [
+                      {
+                        "bounds": {
+                          "height": 0,
+                          "width": 0,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": [
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.FileExplorerTabControl",
+                            "framework": "winui3",
+                            "id": "e3882",
+                            "type": "FileExplorerTabControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.NavigationBarControl",
+                            "framework": "winui3",
+                            "id": "e3942",
+                            "text": "NavigationBarControl",
+                            "type": "NavigationBarControl"
+                          },
+                          {
+                            "bounds": {
+                              "height": 0,
+                              "width": 0,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "className": "FileExplorerExtensions.CommandBarControl",
+                            "framework": "winui3",
+                            "id": "e4134",
+                            "type": "CommandBarControl"
+                          }
+                        ],
+                        "className": "Microsoft.UI.Xaml.Controls.Grid",
+                        "framework": "winui3",
+                        "id": "e3881",
+                        "type": "Grid"
+                      }
+                    ],
+                    "className": "Microsoft.UI.Xaml.Controls.Border",
+                    "framework": "winui3",
+                    "id": "e3880",
+                    "type": "Border"
+                  }
+                ],
+                "className": "Microsoft.UI.Xaml.Controls.ScrollContentPresenter",
+                "framework": "winui3",
+                "id": "e3879",
+                "type": "ScrollContentPresenter"
+              }
+            ],
+            "className": "Microsoft.UI.Xaml.Internal.RootScrollViewer",
+            "framework": "winui3",
+            "id": "e3878",
+            "type": "RootScrollViewer"
+          }
+        ],
+        "className": "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource",
+        "framework": "winui3",
+        "id": "e3876",
+        "type": "DesktopWindowXamlSource"
+      }
+    ],
+    "className": "Shell_TrayWnd",
+    "framework": "win32",
+    "id": "e0",
+    "properties": {
+      "enabled": "true",
+      "hwnd": "0x0000000000010396",
+      "style": "WS_POPUP WS_VISIBLE",
+      "visible": "true"
+    },
+    "type": "Window"
+  },
+  "target": {
+    "hwnd": "0x00010396",
+    "pid": 16512,
+    "processName": "explorer.exe"
+  }
+}

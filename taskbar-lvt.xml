@@ -1,0 +1,100 @@
+<LiveVisualTree hwnd="0x00010396" pid="16512" process="explorer.exe" frameworks="win32,comctl 6.10,winui3 2.9.2602.17001,xaml 10.0.26100.8115">
+  <Window id="e0" framework="win32" className="Shell_TrayWnd" bounds="0,1680,4096,48" enabled="true" hwnd="0x0000000000010396" style="WS_POPUP WS_VISIBLE" visible="true">
+    <CoreWindow id="e1" framework="xaml" className="Windows.UI.Core.CoreWindow" text="DesktopWindowXamlSource" bounds="0,1680,52428,52428" enabled="true" hwnd="0x00000000000204B8" style="WS_CHILD" visible="false">
+      <DesktopWindowXamlSource id="e2" framework="xaml" className="Windows.UI.Xaml.Hosting.DesktopWindowXamlSource">
+        <PopupRoot id="e3" framework="xaml" className="Windows.UI.Xaml.PopupRoot" bounds="0,1680,4096,48" />
+        <RootScrollViewer id="e4" framework="xaml" className="Windows.UI.Xaml.Internal.RootScrollViewer" bounds="0,1680,4096,48" />
+      </DesktopWindowXamlSource>
+      <DesktopWindowXamlSource id="e461" framework="xaml" className="Windows.UI.Xaml.Hosting.DesktopWindowXamlSource">
+        <PopupRoot id="e462" framework="xaml" className="Windows.UI.Xaml.PopupRoot" bounds="0,1680,4096,1728" />
+      </DesktopWindowXamlSource>
+      <DesktopWindowXamlSource id="e463" framework="xaml" className="Windows.UI.Xaml.Hosting.DesktopWindowXamlSource">
+        <PopupRoot id="e464" framework="xaml" className="Windows.UI.Xaml.PopupRoot" bounds="0,1680,234,194" />
+        <RootScrollViewer id="e465" framework="xaml" className="Windows.UI.Xaml.Internal.RootScrollViewer" bounds="0,1680,234,194" />
+      </DesktopWindowXamlSource>
+      <DesktopWindowXamlSource id="e716" framework="xaml" className="Windows.UI.Xaml.Hosting.DesktopWindowXamlSource">
+        <PopupRoot id="e717" framework="xaml" className="Windows.UI.Xaml.PopupRoot" bounds="0,1680,1996,48" />
+        <RootScrollViewer id="e718" framework="xaml" className="Windows.UI.Xaml.Internal.RootScrollViewer" bounds="0,1680,1996,48" />
+      </DesktopWindowXamlSource>
+      <DesktopWindowXamlSource id="e1037" framework="xaml" className="Windows.UI.Xaml.Hosting.DesktopWindowXamlSource">
+        <PopupRoot id="e1038" framework="xaml" className="Windows.UI.Xaml.PopupRoot" />
+      </DesktopWindowXamlSource>
+      <DesktopWindowXamlSource id="e1039" framework="xaml" className="Windows.UI.Xaml.Hosting.DesktopWindowXamlSource">
+        <PopupRoot id="e1040" framework="xaml" className="Windows.UI.Xaml.PopupRoot" />
+        <RootScrollViewer id="e1041" framework="xaml" className="Windows.UI.Xaml.Internal.RootScrollViewer" />
+      </DesktopWindowXamlSource>
+    </CoreWindow>
+    <Window id="e1048" framework="win32" className="Start" text="Start" bounds="1453,1680,46,48" enabled="true" hwnd="0x000000000001039A" style="WS_CHILD" visible="false" />
+    <Window id="e1049" framework="win32" className="TrayDummySearchControl" enabled="true" hwnd="0x000000000001039C" style="WS_OVERLAPPEDWINDOW WS_CHILD WS_VISIBLE" visible="true" />
+    <Window id="e1050" framework="win32" className="TrayNotifyWnd" bounds="3681,1680,415,48" enabled="true" hwnd="0x000000000001039E" style="WS_CHILD WS_VISIBLE" visible="true" />
+    <Window id="e1051" framework="win32" className="ReBarWindow32" bounds="1453,1680,750,48" enabled="true" hwnd="0x00000000000103A0" style="WS_CHILD WS_VISIBLE" visible="true">
+      <Window id="e1052" framework="win32" className="MSTaskSwWClass" text="Running applications" bounds="1453,1680,750,48" enabled="true" hwnd="0x00000000000103A6" style="WS_OVERLAPPEDWINDOW WS_CHILD WS_VISIBLE" visible="true">
+        <Window id="e1053" framework="win32" className="MSTaskListWClass" text="Running applications" bounds="1453,1680,750,48" enabled="true" hwnd="0x00000000000103AA" style="WS_CHILD" visible="false" />
+      </Window>
+    </Window>
+    <Window id="e1054" framework="win32" className="Windows.UI.Composition.DesktopWindowContentBridge" text="DesktopWindowXamlSource" bounds="0,1680,4096,48" enabled="true" hwnd="0x00000000000104E8" style="WS_CHILD WS_VISIBLE" visible="true">
+      <Window id="e1055" framework="win32" className="Windows.UI.Input.InputSite.WindowClass" enabled="true" hwnd="0x00000000000104EA" style="WS_CHILD WS_VISIBLE" visible="true" />
+    </Window>
+    <DesktopWindowXamlSource id="e1056" framework="winui3" className="Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource">
+      <PopupRoot id="e1057" framework="winui3" className="Microsoft.UI.Xaml.PopupRoot" />
+      <RootScrollViewer id="e1058" framework="winui3" className="Microsoft.UI.Xaml.Internal.RootScrollViewer">
+        <ScrollContentPresenter id="e1059" framework="winui3" className="Microsoft.UI.Xaml.Controls.ScrollContentPresenter" />
+      </RootScrollViewer>
+    </DesktopWindowXamlSource>
+    <DesktopWindowXamlSource id="e1430" framework="winui3" className="Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource">
+      <PopupRoot id="e1431" framework="winui3" className="Microsoft.UI.Xaml.PopupRoot" />
+      <RootScrollViewer id="e1432" framework="winui3" className="Microsoft.UI.Xaml.Internal.RootScrollViewer">
+        <ScrollContentPresenter id="e1433" framework="winui3" className="Microsoft.UI.Xaml.Controls.ScrollContentPresenter" />
+      </RootScrollViewer>
+    </DesktopWindowXamlSource>
+    <DesktopWindowXamlSource id="e1748" framework="winui3" className="Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource">
+      <PopupRoot id="e1749" framework="winui3" className="Microsoft.UI.Xaml.PopupRoot" />
+      <RootScrollViewer id="e1750" framework="winui3" className="Microsoft.UI.Xaml.Internal.RootScrollViewer">
+        <ScrollContentPresenter id="e1751" framework="winui3" className="Microsoft.UI.Xaml.Controls.ScrollContentPresenter" />
+      </RootScrollViewer>
+    </DesktopWindowXamlSource>
+    <DesktopWindowXamlSource id="e1754" framework="winui3" className="Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource">
+      <PopupRoot id="e1755" framework="winui3" className="Microsoft.UI.Xaml.PopupRoot" />
+      <RootScrollViewer id="e1756" framework="winui3" className="Microsoft.UI.Xaml.Internal.RootScrollViewer">
+        <ScrollContentPresenter id="e1757" framework="winui3" className="Microsoft.UI.Xaml.Controls.ScrollContentPresenter" />
+      </RootScrollViewer>
+    </DesktopWindowXamlSource>
+    <DesktopWindowXamlSource id="e2072" framework="winui3" className="Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource">
+      <PopupRoot id="e2073" framework="winui3" className="Microsoft.UI.Xaml.PopupRoot" />
+      <RootScrollViewer id="e2074" framework="winui3" className="Microsoft.UI.Xaml.Internal.RootScrollViewer">
+        <ScrollContentPresenter id="e2075" framework="winui3" className="Microsoft.UI.Xaml.Controls.ScrollContentPresenter" />
+      </RootScrollViewer>
+    </DesktopWindowXamlSource>
+    <DesktopWindowXamlSource id="e2491" framework="winui3" className="Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource">
+      <PopupRoot id="e2492" framework="winui3" className="Microsoft.UI.Xaml.PopupRoot" />
+      <RootScrollViewer id="e2493" framework="winui3" className="Microsoft.UI.Xaml.Internal.RootScrollViewer">
+        <ScrollContentPresenter id="e2494" framework="winui3" className="Microsoft.UI.Xaml.Controls.ScrollContentPresenter" />
+      </RootScrollViewer>
+    </DesktopWindowXamlSource>
+    <DesktopWindowXamlSource id="e2835" framework="winui3" className="Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource">
+      <PopupRoot id="e2836" framework="winui3" className="Microsoft.UI.Xaml.PopupRoot" />
+      <RootScrollViewer id="e2837" framework="winui3" className="Microsoft.UI.Xaml.Internal.RootScrollViewer">
+        <ScrollContentPresenter id="e2838" framework="winui3" className="Microsoft.UI.Xaml.Controls.ScrollContentPresenter" />
+      </RootScrollViewer>
+    </DesktopWindowXamlSource>
+    <DesktopWindowXamlSource id="e3167" framework="winui3" className="Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource">
+      <PopupRoot id="e3168" framework="winui3" className="Microsoft.UI.Xaml.PopupRoot" />
+      <RootScrollViewer id="e3169" framework="winui3" className="Microsoft.UI.Xaml.Internal.RootScrollViewer">
+        <ScrollContentPresenter id="e3170" framework="winui3" className="Microsoft.UI.Xaml.Controls.ScrollContentPresenter" />
+      </RootScrollViewer>
+    </DesktopWindowXamlSource>
+    <DesktopWindowXamlSource id="e3541" framework="winui3" className="Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource">
+      <PopupRoot id="e3542" framework="winui3" className="Microsoft.UI.Xaml.PopupRoot" />
+      <RootScrollViewer id="e3543" framework="winui3" className="Microsoft.UI.Xaml.Internal.RootScrollViewer">
+        <ScrollContentPresenter id="e3544" framework="winui3" className="Microsoft.UI.Xaml.Controls.ScrollContentPresenter" />
+      </RootScrollViewer>
+    </DesktopWindowXamlSource>
+    <DesktopWindowXamlSource id="e3876" framework="winui3" className="Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource">
+      <PopupRoot id="e3877" framework="winui3" className="Microsoft.UI.Xaml.PopupRoot" />
+      <RootScrollViewer id="e3878" framework="winui3" className="Microsoft.UI.Xaml.Internal.RootScrollViewer">
+        <ScrollContentPresenter id="e3879" framework="winui3" className="Microsoft.UI.Xaml.Controls.ScrollContentPresenter" />
+      </RootScrollViewer>
+    </DesktopWindowXamlSource>
+  </Window>
+</LiveVisualTree>
+

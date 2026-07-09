@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <AssemblyName>PeekDesktop</AssemblyName>
+    <RootNamespace>PeekDesktop</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\PeekDesktop.ico</ApplicationIcon>
+    <Authors>Scott Hanselman</Authors>
+    <Description>Click your desktop to peek at it — just like macOS Sonoma.</Description>
+    <RepositoryUrl>https://github.com/shanselman/PeekDesktop</RepositoryUrl>
+    <PublishAot>true</PublishAot>
+    <OptimizationPreference>Size</OptimizationPreference>
+    <!-- Aggressive size reduction -->
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <StackTraceSupport>false</StackTraceSupport>
+    <UseSystemResourceKeys>true</UseSystemResourceKeys>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="6.0.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="PeekDesktop.InteropHarness" />
+  </ItemGroup>
+
+  <!-- VirtualDesktopService.cs is excluded under AOT because it relies on
+       COM interop ([ComImport], Activator.CreateInstance) that NativeAOT
+       does not support. The file is kept in the repo for future reference. -->
+  <ItemGroup Condition="'$(PublishAot)' == 'true'">
+    <Compile Remove="VirtualDesktopService.cs" />
+  </ItemGroup>
+
+</Project>
