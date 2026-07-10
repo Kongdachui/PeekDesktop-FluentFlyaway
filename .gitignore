@@ -6,3 +6,4 @@ artifacts/
 *.suo
 .vs/
 *.lscache
+push.bat
