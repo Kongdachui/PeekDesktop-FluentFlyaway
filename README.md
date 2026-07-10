@@ -1,6 +1,19 @@
-# PeekDesktop 👀
+# PeekDesktop — FluentFlyaway 👀
 
 **Click empty desktop wallpaper (or empty taskbar area) to reveal your desktop — just like macOS Sonoma.**
+
+Fork of [shanselman/PeekDesktop](https://github.com/shanselman/PeekDesktop) with a smoother **Fly Away** animation and interruption support.
+
+### FluentFlyaway Changes
+
+- **Smoother animation**: 30 steps / 200ms with `PumpingSleep` — messages are pumped during animation so the UI stays responsive
+- **Click to interrupt**: Click during fly-away animation to reverse direction immediately (windows fly back)
+- **No mouse lock**: Mouse input works during the entire animation
+- **Maximized window fix**: Maximized windows are hidden/shown directly instead of un-maximize → animate → re-maximize (fixes visual glitch and Z-order issues)
+- **Faster response**: Grace periods reduced from 200ms/300ms to 50ms
+- **Auto-update disabled**: No startup update check
+
+---
 
 PeekDesktop brings macOS Sonoma's "click wallpaper to reveal desktop" feature to Windows 10 and 11. By default it uses Explorer's native **Show Desktop** behavior, and it also includes an optional **Fly Away** experimental style plus tray toggles for **Require Double-Click**, **Peek on Desktop Click**, and **Peek on Taskbar Click**. Click or drag desktop icons normally without accidentally triggering peek. When you're done, click any window, the taskbar, or the wallpaper again and everything comes right back where it was.
 
@@ -10,7 +23,7 @@ PeekDesktop brings macOS Sonoma's "click wallpaper to reveal desktop" feature to
 
 ## Download
 
-📥 **[Download the latest release](https://github.com/shanselman/PeekDesktop/releases/latest)**
+📥 **[Download the latest release](https://github.com/Kongdachui/PeekDesktop-FluentFlyaway/releases/latest)**
 
 ### Install with Winget
 

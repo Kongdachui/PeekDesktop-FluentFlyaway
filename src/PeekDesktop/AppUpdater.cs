@@ -12,8 +12,8 @@ namespace PeekDesktop;
 
 internal sealed class AppUpdater
 {
-    private const string LatestReleaseApiUrl = "https://api.github.com/repos/shanselman/PeekDesktop/releases/latest";
-    private const string ReleasesPageUrl = "https://github.com/shanselman/PeekDesktop/releases/latest";
+    private const string LatestReleaseApiUrl = "https://api.github.com/repos/Kongdachui/PeekDesktop-FluentFlyaway/releases/latest";
+    private const string ReleasesPageUrl = "https://github.com/Kongdachui/PeekDesktop-FluentFlyaway/releases/latest";
 
     private readonly Win32MessageLoop? _messageLoop;
     private int _isChecking;
@@ -396,7 +396,7 @@ internal sealed class AppUpdater
         return Uri.TryCreate(url, UriKind.Absolute, out Uri? uri)
             && uri.Scheme == "https"
             && uri.Host.Equals("github.com", StringComparison.OrdinalIgnoreCase)
-            && uri.AbsolutePath.StartsWith("/shanselman/PeekDesktop/", StringComparison.OrdinalIgnoreCase);
+            && uri.AbsolutePath.StartsWith("/Kongdachui/PeekDesktop-FluentFlyaway/", StringComparison.OrdinalIgnoreCase);
     }
 
     private void RaiseUpdateAvailable(string version, string releaseUrl)

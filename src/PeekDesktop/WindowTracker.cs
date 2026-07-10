@@ -17,6 +17,7 @@ public sealed class WindowTracker
     private const int OffscreenMargin = 64;
 
     private readonly List<WindowInfo> _savedWindows = new();
+    private readonly HashSet<IntPtr> _maximizedWindows = new();
 
     public bool HasWindows => _savedWindows.Count > 0;
     public int SavedWindowCount => _savedWindows.Count;
@@ -75,6 +76,7 @@ public sealed class WindowTracker
     public void ClearSavedWindows()
     {
         _savedWindows.Clear();
+        _maximizedWindows.Clear();
     }
 
     public IntPtr[] GetSavedWindowHandlesSnapshot()
@@ -109,19 +111,21 @@ public sealed class WindowTracker
     {
         var stopwatch = Stopwatch.StartNew();
         var animationWindows = new List<AnimatedWindow>(_savedWindows.Count);
+        _maximizedWindows.Clear();
 
         foreach (var window in _savedWindows)
         {
             if (!NativeMethods.IsWindow(window.Handle))
                 continue;
 
-            var workingPlacement = window.Placement;
-            workingPlacement.length = Marshal.SizeOf<NativeMethods.WINDOWPLACEMENT>();
-
-            if (workingPlacement.showCmd == NativeMethods.SW_MAXIMIZE)
+            // Maximized windows: just hide them, don't animate.
+            // Un-maximizing before animation causes a visible "shrink" glitch,
+            // and restoring to the wrong position breaks Z-order.
+            if (window.Placement.showCmd == NativeMethods.SW_MAXIMIZE)
             {
-                workingPlacement.showCmd = NativeMethods.SW_SHOWNORMAL;
-                NativeMethods.SetWindowPlacement(window.Handle, ref workingPlacement);
+                _maximizedWindows.Add(window.Handle);
+                NativeMethods.ShowWindow(window.Handle, NativeMethods.SW_HIDE);
+                continue;
             }
 
             NativeMethods.ShowWindow(window.Handle, NativeMethods.SW_SHOWNOACTIVATE);
@@ -132,7 +136,7 @@ public sealed class WindowTracker
         }
 
         AnimateWindows(animationWindows);
-        AppDiagnostics.Metric($"FlyAwayAll: {animationWindows.Count} window(s) in {stopwatch.ElapsedMilliseconds}ms");
+        AppDiagnostics.Metric($"FlyAwayAll: {animationWindows.Count} animated + {_maximizedWindows.Count} hidden in {stopwatch.ElapsedMilliseconds}ms");
     }
 
     /// <summary>
@@ -151,6 +155,11 @@ public sealed class WindowTracker
             foreach (var info in _savedWindows)
             {
                 if (!NativeMethods.IsWindow(info.Handle))
+                    continue;
+
+                // Maximized windows were hidden, not animated — skip them in the fly-back animation.
+                // They'll be restored directly via SetWindowPlacement below.
+                if (_maximizedWindows.Contains(info.Handle))
                     continue;
 
                 NativeMethods.ShowWindow(info.Handle, NativeMethods.SW_SHOWNOACTIVATE);
@@ -175,6 +184,10 @@ public sealed class WindowTracker
                 continue;
             }
 
+            // For maximized windows that were hidden, show them first
+            if (_maximizedWindows.Contains(info.Handle))
+                NativeMethods.ShowWindow(info.Handle, NativeMethods.SW_SHOWNOACTIVATE);
+
             var placement = info.Placement;
             AppDiagnostics.LogWindow("Restoring window", info.Handle);
             NativeMethods.SetWindowPlacement(info.Handle, ref placement);
@@ -182,6 +195,7 @@ public sealed class WindowTracker
         }
 
         _savedWindows.Clear();
+        _maximizedWindows.Clear();
         AppDiagnostics.Log("Restore list cleared");
         AppDiagnostics.Metric($"RestoreAll: {restoredCount} window(s) in {stopwatch.ElapsedMilliseconds}ms");
     }
