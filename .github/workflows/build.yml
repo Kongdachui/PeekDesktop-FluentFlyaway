@@ -211,7 +211,7 @@ jobs:
         $notes = @"
         ## PeekDesktop $tag
 
-        **Click empty desktop wallpaper or empty taskbar space to peek at it — just like macOS Sonoma.**
+        **Click empty desktop wallpaper or empty taskbar area to peek at it — just like macOS Sonoma. FluentFlyaway edition with smooth animation and click-to-interrupt.**
 
         ### 📦 Downloads
 
