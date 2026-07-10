@@ -118,14 +118,16 @@ public sealed class WindowTracker
             if (!NativeMethods.IsWindow(window.Handle))
                 continue;
 
-            // Maximized windows: just hide them, don't animate.
-            // Un-maximizing before animation causes a visible "shrink" glitch,
-            // and restoring to the wrong position breaks Z-order.
             if (window.Placement.showCmd == NativeMethods.SW_MAXIMIZE)
             {
+                // Un-maximize to normal size, then animate offscreen from there.
+                // The size change happens in one frame (~6ms) — invisible during
+                // the 200ms animation. RestoreAll will re-maximize via SetWindowPlacement.
                 _maximizedWindows.Add(window.Handle);
-                NativeMethods.ShowWindow(window.Handle, NativeMethods.SW_HIDE);
-                continue;
+                var normalPlacement = window.Placement;
+                normalPlacement.length = Marshal.SizeOf<NativeMethods.WINDOWPLACEMENT>();
+                normalPlacement.showCmd = NativeMethods.SW_SHOWNORMAL;
+                NativeMethods.SetWindowPlacement(window.Handle, ref normalPlacement);
             }
 
             NativeMethods.ShowWindow(window.Handle, NativeMethods.SW_SHOWNOACTIVATE);
@@ -136,7 +138,7 @@ public sealed class WindowTracker
         }
 
         AnimateWindows(animationWindows);
-        AppDiagnostics.Metric($"FlyAwayAll: {animationWindows.Count} animated + {_maximizedWindows.Count} hidden in {stopwatch.ElapsedMilliseconds}ms");
+        AppDiagnostics.Metric($"FlyAwayAll: {animationWindows.Count} window(s) in {stopwatch.ElapsedMilliseconds}ms");
     }
 
     /// <summary>
@@ -155,11 +157,6 @@ public sealed class WindowTracker
             foreach (var info in _savedWindows)
             {
                 if (!NativeMethods.IsWindow(info.Handle))
-                    continue;
-
-                // Maximized windows were hidden, not animated — skip them in the fly-back animation.
-                // They'll be restored directly via SetWindowPlacement below.
-                if (_maximizedWindows.Contains(info.Handle))
                     continue;
 
                 NativeMethods.ShowWindow(info.Handle, NativeMethods.SW_SHOWNOACTIVATE);
@@ -183,10 +180,6 @@ public sealed class WindowTracker
                 AppDiagnostics.LogWindow("Skipping destroyed window", info.Handle);
                 continue;
             }
-
-            // For maximized windows that were hidden, show them first
-            if (_maximizedWindows.Contains(info.Handle))
-                NativeMethods.ShowWindow(info.Handle, NativeMethods.SW_SHOWNOACTIVATE);
 
             var placement = info.Placement;
             AppDiagnostics.LogWindow("Restoring window", info.Handle);

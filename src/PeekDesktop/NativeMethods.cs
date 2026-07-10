@@ -24,6 +24,7 @@ internal static class NativeMethods
     public const int SW_MAXIMIZE = 3;
     public const int SW_SHOWNOACTIVATE = 4;
     public const int SW_MINIMIZE = 6;
+    public const int SW_HIDE = 0;
     public const int SW_RESTORE = 9;
 
     // --- GetWindow relationship ---
