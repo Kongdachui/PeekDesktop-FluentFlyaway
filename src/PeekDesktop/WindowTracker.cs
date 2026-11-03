@@ -143,7 +143,12 @@ public sealed class WindowTracker
 
     /// <summary>
     /// Restore every captured window to its saved placement.
-    /// Restores bottom-to-top to preserve Z-order, and does NOT steal focus.
+    /// Restores bottom-to-top to preserve Z-order. The common path un-minimizes windows
+    /// without activating them, so focus stays with whatever the shell restored.
+    ///
+    /// Windows 11 snap groups ("Snap layouts" / side-by-side split) are restored by
+    /// un-minimizing the window and letting Windows put it back into its snap slot;
+    /// forcing WINDOWPLACEMENT would move it to the pre-snap rect and dissolve the split.
     /// </summary>
     public void RestoreAll(PeekMode peekMode = PeekMode.Minimize)
     {
@@ -181,9 +186,8 @@ public sealed class WindowTracker
                 continue;
             }
 
-            var placement = info.Placement;
             AppDiagnostics.LogWindow("Restoring window", info.Handle);
-            NativeMethods.SetWindowPlacement(info.Handle, ref placement);
+            RestoreWindow(info);
             restoredCount++;
         }
 
@@ -191,6 +195,92 @@ public sealed class WindowTracker
         _maximizedWindows.Clear();
         AppDiagnostics.Log("Restore list cleared");
         AppDiagnostics.Metric($"RestoreAll: {restoredCount} window(s) in {stopwatch.ElapsedMilliseconds}ms");
+    }
+
+    /// <summary>
+    /// Restores a single captured window without trampling state that the shell owns.
+    ///
+    /// For a window arranged in a Windows 11 snap group, <c>GetWindowRect</c> returns the
+    /// snapped (split) rect while <c>WINDOWPLACEMENT.rcNormalPosition</c> still holds the
+    /// pre-snap rect. Calling <c>SetWindowPlacement</c> therefore teleports the window back
+    /// to its pre-snap position and dissolves the split. Un-minimizing with
+    /// <c>SW_SHOWNOACTIVATE</c> instead lets Windows restore the window's pre-minimize state
+    /// (including its snap slot) without activating it. Only when that natural restore
+    /// does not land on the captured geometry do we force the rect with <c>SetWindowPos</c>.
+    /// </summary>
+    private static void RestoreWindow(WindowInfo info)
+    {
+        bool wasMaximized = info.Placement.showCmd == NativeMethods.SW_MAXIMIZE;
+
+        if (wasMaximized)
+        {
+            // Maximized windows are never part of a snap group; restore the maximized
+            // state exactly (un-minimizing with SW_SHOWNOACTIVATE re-maximizes too,
+            // so SetWindowPlacement is only a fallback).
+            if (NativeMethods.IsIconic(info.Handle) || !NativeMethods.IsWindowVisible(info.Handle))
+            {
+                NativeMethods.ShowWindow(info.Handle, NativeMethods.SW_SHOWNOACTIVATE);
+                AppDiagnostics.LogWindow("Restore: re-showed captured-maximized window", info.Handle);
+            }
+
+            if (!NativeMethods.IsZoomed(info.Handle) || !RectsMatch(GetCurrentBounds(info), info.Bounds))
+            {
+                AppDiagnostics.LogWindow("Restore: re-applying maximized placement", info.Handle);
+                var placement = info.Placement;
+                placement.length = Marshal.SizeOf<NativeMethods.WINDOWPLACEMENT>();
+                NativeMethods.SetWindowPlacement(info.Handle, ref placement);
+            }
+
+            return;
+        }
+
+        if (NativeMethods.IsIconic(info.Handle) || !NativeMethods.IsWindowVisible(info.Handle))
+        {
+            // Restores the pre-minimize state (snapped windows return to their snap slot)
+            // without activating the window. The visibility check covers apps that hide
+            // themselves while being minimized ("minimize to tray"); SetWindowPlacement
+            // used to bring those back, so keep that contract.
+            NativeMethods.ShowWindow(info.Handle, NativeMethods.SW_SHOWNOACTIVATE);
+        }
+        else if (NativeMethods.IsZoomed(info.Handle))
+        {
+            // The window was maximized behind our back while peeking; return it to normal.
+            NativeMethods.ShowWindow(info.Handle, NativeMethods.SW_RESTORE);
+        }
+
+        // Last-resort geometry fix-up. Skipped when the window is already on the captured
+        // rect (the normal case) — and skipping it is what keeps a snap group intact.
+        if (RectsMatch(GetCurrentBounds(info), info.Bounds))
+        {
+            AppDiagnostics.LogWindow("Restore: geometry already correct, snap state left intact", info.Handle);
+            return;
+        }
+
+        AppDiagnostics.LogWindow("Restore: rect mismatch, forcing captured bounds", info.Handle);
+        int width = Math.Max(1, info.Bounds.Right - info.Bounds.Left);
+        int height = Math.Max(1, info.Bounds.Bottom - info.Bounds.Top);
+        NativeMethods.SetWindowPos(
+            info.Handle,
+            IntPtr.Zero,
+            info.Bounds.Left,
+            info.Bounds.Top,
+            width,
+            height,
+            NativeMethods.SWP_NOZORDER
+            | NativeMethods.SWP_NOACTIVATE
+            | NativeMethods.SWP_NOOWNERZORDER
+            | NativeMethods.SWP_NOSENDCHANGING
+            | NativeMethods.SWP_ASYNCWINDOWPOS);
+    }
+
+    /// <summary>Compares two rects with a small tolerance for DPI / non-client rounding.</summary>
+    private static bool RectsMatch(NativeMethods.RECT a, NativeMethods.RECT b)
+    {
+        const int tolerance = 2;
+        return Math.Abs(a.Left - b.Left) <= tolerance
+            && Math.Abs(a.Top - b.Top) <= tolerance
+            && Math.Abs(a.Right - b.Right) <= tolerance
+            && Math.Abs(a.Bottom - b.Bottom) <= tolerance;
     }
 
     /// <summary>

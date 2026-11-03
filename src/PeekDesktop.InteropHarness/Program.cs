@@ -27,6 +27,7 @@ internal static class Program
         RunTest("Version info smoke", options, failures, VersionInfoSmoke);
         RunTest("Notification state stress", options, failures, NotificationStateStress);
         RunTest("Malformed input contracts", options, failures, MalformedInputContracts);
+        RunTest("Localization strings", options, failures, LocalizationStrings);
         RunTest($"Leak probe ({options.Iterations:N0} iterations)", options, failures, () => LeakProbe(options));
 
         // Auto-updater tests
@@ -131,6 +132,7 @@ internal static class Program
             bool isWindow = NativeMethods.IsWindow(hwnd);
             bool isVisible = NativeMethods.IsWindowVisible(hwnd);
             bool isIconic = NativeMethods.IsIconic(hwnd);
+            bool isZoomed = NativeMethods.IsZoomed(hwnd);
             bool isCloaked = NativeMethods.IsWindowCloaked(hwnd);
             string className = NativeMethods.GetWindowClassName(hwnd);
             string title = NativeMethods.GetWindowTitle(hwnd);
@@ -145,7 +147,7 @@ internal static class Program
 
             if (hwnd == IntPtr.Zero)
             {
-                if (isWindow || isVisible || isIconic || isCloaked)
+                if (isWindow || isVisible || isIconic || isZoomed || isCloaked)
                     throw new InvalidOperationException("Zero handle should not report window state.");
 
                 if (className.Length != 0 || title.Length != 0)
@@ -288,6 +290,63 @@ internal static class Program
         if (resolved || processName.Length != 0)
             throw new InvalidOperationException("PID zero should fail and return an empty process name.");
     }
+
+    private static void LocalizationStrings()
+    {
+        string[] menuStrings =
+        [
+            Strings.Enabled,
+            Strings.StartWithWindows,
+            Strings.RequireDoubleClick,
+            Strings.PeekOnDesktopClick,
+            Strings.PeekOnTaskbarClick,
+            Strings.RestoreOnAppSwitch,
+            Strings.PauseWhileGaming,
+            Strings.ShowDesktopMode,
+            Strings.FlyAwayMode,
+            Strings.AboutMenu,
+            Strings.CheckForUpdates,
+            Strings.AutoCheckForUpdates,
+            Strings.Exit
+        ];
+
+        foreach (string text in menuStrings)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                throw new InvalidOperationException("Tray menu string is empty.");
+        }
+
+        if (menuStrings.Distinct(StringComparer.Ordinal).Count() != menuStrings.Length)
+            throw new InvalidOperationException("Tray menu strings are not unique.");
+
+        if (!Strings.AboutText("1.2.3").Contains("1.2.3", StringComparison.Ordinal))
+            throw new InvalidOperationException("About text does not include the version.");
+
+        if (!Strings.UpdateAvailablePrompt("1.2.3").Contains("1.2.3", StringComparison.Ordinal))
+            throw new InvalidOperationException("Update prompt does not include the version.");
+
+        bool hasChinese = menuStrings.Any(ContainsCjk);
+        bool chineseUiLanguage = (Strings.GetUiLanguageId() & 0x3FF) == 0x04;
+        if (chineseUiLanguage != Strings.UseChinese)
+        {
+            throw new InvalidOperationException(
+                $"UI language detection mismatch: langid=0x{Strings.GetUiLanguageId():X4}, UseChinese={Strings.UseChinese}.");
+        }
+
+        if (chineseUiLanguage && !hasChinese)
+            throw new InvalidOperationException("Chinese UI language detected but tray menu strings are not Chinese.");
+
+        if (!chineseUiLanguage && hasChinese)
+            throw new InvalidOperationException("Non-Chinese UI language detected but tray menu strings contain Chinese.");
+
+        foreach (PeekMode mode in Enum.GetValues<PeekMode>())
+        {
+            if (string.IsNullOrWhiteSpace(Strings.PeekModeName(mode)))
+                throw new InvalidOperationException($"Peek mode name is empty for {mode}.");
+        }
+    }
+
+    private static bool ContainsCjk(string text) => text.Any(ch => ch >= '\u4E00' && ch <= '\u9FFF');
 
     private static void LeakProbe(HarnessOptions options)
     {

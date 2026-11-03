@@ -167,7 +167,7 @@ public static class Program
         NativeMethods.MessageBoxW(
             IntPtr.Zero,
             $"{context}\n\n{ex.Message}",
-            "PeekDesktop failed to start",
+            Strings.StartupFailedTitle,
             NativeMethods.MB_OK | NativeMethods.MB_ICONERROR);
     }
 }

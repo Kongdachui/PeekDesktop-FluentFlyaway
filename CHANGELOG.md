@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.0-fluent — 2026-11-03
+
+### 🌐 本地化
+
+- **托盘菜单中文化**：托盘右键菜单、菜单项开关、Peek 样式名称、托盘提示、气泡通知、"关于"对话框以及更新检查相关对话框，在 Windows 显示语言为中文时显示中文（简体）；其它语言的 Windows 保持原英文，不影响上游用户。语言通过 `GetUserDefaultUILanguage` 判断（Native AOT 下 `InvariantGlobalization` 生效，不能用 `CultureInfo`）。
+
+### 🔧 修复
+
+- **Windows 11 贴靠分屏（Snap 布局）恢复后丢失**：把两个窗口通过"拖到屏幕顶部 → 选择贴靠布局"分屏后，点击桌面 peek 再恢复时，窗口会回到分屏前的旧位置而不是原来的左右分屏。原因是恢复流程对所有窗口调用 `SetWindowPlacement`，而贴靠窗口的 `WINDOWPLACEMENT.rcNormalPosition` 保存的是分屏前的矩形，调用后还会解除 snap group。现在非最大化窗口改为先用 `SW_SHOWNOACTIVATE` 还原最小化前状态（由 Windows 自己把窗口放回 snap 槽位），仅在几何位置不一致时才用 `SetWindowPos` 兜底；最大化窗口仍保留 `SetWindowPlacement` 作为兜底。
+- **恢复时抢占焦点**：常规恢复路径不再激活窗口（焦点保持不变）；最大化兜底与"窗口被意外最大化后还原"仍可能激活，属预期。这是相对旧版本的可见行为变化。
+- **保持"最小化到托盘"行为**：被 peek 隐藏、并在此期间自我隐藏（如 Telegram/Discord 的最小化到托盘）的窗口仍会被恢复显示，与旧版 `SetWindowPlacement` 的行为一致。
+
 ## v0.1.0-fluent — FluentFlyaway 初始版本
 
 基于 [shanselman/PeekDesktop](https://github.com/shanselman/PeekDesktop) 的 fork，专注于改善 Fly Away 动画体验。
