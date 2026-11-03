@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Runtime.InteropServices;
 
 namespace PeekDesktop;
@@ -47,6 +48,27 @@ internal static class Strings
     };
 
     public static string TooltipForMode(PeekMode mode) => $"PeekDesktop - {PeekModeName(mode)}";
+
+    // --- Animation speed (Fly Away) ---
+    public static string AnimationSpeedMenu => T("动画速度（飞走模式）", "Animation Speed (Fly Away)");
+
+    public static string AnimationSpeedItem(double speed)
+    {
+        string number = speed.ToString("0.##", CultureInfo.InvariantCulture);
+        string label = speed switch
+        {
+            < 0.4 => T("很慢", "Slowest"),
+            < 0.65 => T("慢", "Slow"),
+            < 0.95 => T("较慢", "Slower"),
+            < 1.15 => T("正常", "Normal"),
+            < 1.45 => T("较快", "Faster"),
+            < 1.9 => T("快", "Fast"),
+            < 3.1 => T("很快", "Very fast"),
+            _ => T("极快", "Fastest")
+        };
+
+        return UseChinese ? $"{number}×（{label}）" : $"{number}x ({label})";
+    }
 
     // --- About dialog ---
     public static string AboutTitle => T("关于 PeekDesktop", "About PeekDesktop");

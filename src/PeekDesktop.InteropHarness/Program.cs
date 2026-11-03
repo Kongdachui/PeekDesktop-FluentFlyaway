@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using System.IO.Compression;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using PeekDesktop;
@@ -28,6 +30,8 @@ internal static class Program
         RunTest("Notification state stress", options, failures, NotificationStateStress);
         RunTest("Malformed input contracts", options, failures, MalformedInputContracts);
         RunTest("Localization strings", options, failures, LocalizationStrings);
+        RunTest("Animation speed settings", options, failures, AnimationSpeedSettings);
+        RunTest("Nested tray menu dispatch", options, failures, NestedTrayMenuDispatch);
         RunTest($"Leak probe ({options.Iterations:N0} iterations)", options, failures, () => LeakProbe(options));
 
         // Auto-updater tests
@@ -347,6 +351,119 @@ internal static class Program
     }
 
     private static bool ContainsCjk(string text) => text.Any(ch => ch >= '\u4E00' && ch <= '\u9FFF');
+
+    private static void AnimationSpeedSettings()
+    {
+        foreach (double invalid in new[] { double.NaN, double.PositiveInfinity, double.NegativeInfinity, 0.0, -2.0 })
+        {
+            if (Settings.NormalizeAnimationSpeed(invalid) != 1.0)
+                throw new InvalidOperationException($"Invalid animation speed {invalid} should normalize to 1.0.");
+        }
+
+        if (Settings.NormalizeAnimationSpeed(Settings.MinAnimationSpeed / 2) != Settings.MinAnimationSpeed)
+            throw new InvalidOperationException("Animation speed below the minimum should clamp to the minimum.");
+
+        if (Settings.NormalizeAnimationSpeed(Settings.MaxAnimationSpeed * 2) != Settings.MaxAnimationSpeed)
+            throw new InvalidOperationException("Animation speed above the maximum should clamp to the maximum.");
+
+        foreach (double valid in new[] { 0.25, 0.5, 1.0, 1.5, 4.0 })
+        {
+            if (Settings.NormalizeAnimationSpeed(valid) != valid)
+                throw new InvalidOperationException($"Valid animation speed {valid} should be preserved.");
+        }
+
+        string[] labels =
+        [
+            Strings.AnimationSpeedItem(0.25),
+            Strings.AnimationSpeedItem(0.5),
+            Strings.AnimationSpeedItem(0.75),
+            Strings.AnimationSpeedItem(1.0),
+            Strings.AnimationSpeedItem(1.25),
+            Strings.AnimationSpeedItem(1.5),
+            Strings.AnimationSpeedItem(2.0),
+            Strings.AnimationSpeedItem(3.0),
+            Strings.AnimationSpeedItem(4.0)
+        ];
+
+        if (labels.Any(string.IsNullOrWhiteSpace))
+            throw new InvalidOperationException("Animation speed label is empty.");
+
+        if (labels.Distinct(StringComparer.Ordinal).Count() != labels.Length)
+            throw new InvalidOperationException("Animation speed labels are not unique.");
+
+        var tracker = new WindowTracker();
+        tracker.AnimationSpeed = 1.0;
+        if (tracker.CurrentAnimationDurationMs != 200)
+            throw new InvalidOperationException($"1.0x should animate for 200ms, got {tracker.CurrentAnimationDurationMs}ms.");
+
+        tracker.AnimationSpeed = 2.0;
+        if (tracker.CurrentAnimationDurationMs != 100)
+            throw new InvalidOperationException($"2.0x should animate for 100ms, got {tracker.CurrentAnimationDurationMs}ms.");
+
+        tracker.AnimationSpeed = 0.5;
+        if (tracker.CurrentAnimationDurationMs != 400)
+            throw new InvalidOperationException($"0.5x should animate for 400ms, got {tracker.CurrentAnimationDurationMs}ms.");
+
+        tracker.AnimationSpeed = 1000.0;
+        if (tracker.CurrentAnimationDurationMs != 40)
+            throw new InvalidOperationException($"Very high speeds should clamp to 40ms, got {tracker.CurrentAnimationDurationMs}ms.");
+
+        tracker.AnimationSpeed = 0.0;
+        if (tracker.CurrentAnimationDurationMs != 200)
+            throw new InvalidOperationException($"A zero speed should fall back to 200ms, got {tracker.CurrentAnimationDurationMs}ms.");
+
+        var original = new Settings { AnimationSpeed = 1.5, PeekMode = PeekMode.FlyAway, Enabled = false };
+        byte[] json = original.SerializeUtf8();
+        Settings roundTrip = Settings.DeserializeUtf8(json);
+        if (Math.Abs(roundTrip.AnimationSpeed - 1.5) > 0.0001
+            || roundTrip.PeekMode != PeekMode.FlyAway
+            || roundTrip.Enabled)
+        {
+            throw new InvalidOperationException("Settings JSON round-trip lost AnimationSpeed or other values.");
+        }
+    }
+
+    private static void NestedTrayMenuDispatch()
+    {
+        int clicks = 0;
+        const uint topId = 1;
+        const uint nestedId = 40;
+
+        using var menu = new Win32Menu();
+        menu.AddItem(topId, "顶部 item", () => clicks += 1);
+        Win32Menu submenu = menu.AddSubmenu("动画速度");
+        submenu.AddItem(nestedId, "0.5×（慢）", () => clicks += 10);
+
+        if (!menu.Invoke(topId) || clicks != 1)
+            throw new InvalidOperationException("Top-level menu action did not dispatch.");
+
+        if (!menu.Invoke(nestedId) || clicks != 11)
+            throw new InvalidOperationException("Submenu action did not resolve through the shared action table.");
+
+        if (menu.Invoke(9999))
+            throw new InvalidOperationException("Unknown command id should not dispatch.");
+
+        if (GetMenuItemCount(menu.Handle) != 2)
+            throw new InvalidOperationException("Menu should contain the item plus the submenu entry.");
+
+        IntPtr attachedSubmenu = GetSubMenu(menu.Handle, 1);
+        if (attachedSubmenu != submenu.Handle)
+            throw new InvalidOperationException("Submenu was not attached to the parent menu.");
+
+        var text = new StringBuilder(128);
+        int length = GetMenuStringW(submenu.Handle, nestedId, text, text.Capacity, 0 /* MF_BYCOMMAND */);
+        if (length <= 0 || text.ToString() != "0.5×（慢）")
+            throw new InvalidOperationException($"Unicode menu text did not round-trip: got '{text}'.");
+    }
+
+    [DllImport("user32.dll")]
+    private static extern int GetMenuItemCount(IntPtr hMenu);
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr GetSubMenu(IntPtr hMenu, int nPos);
+
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+    private static extern int GetMenuStringW(IntPtr hMenu, uint uIDItem, StringBuilder lpString, int cchMax, uint flags);
 
     private static void LeakProbe(HarnessOptions options)
     {

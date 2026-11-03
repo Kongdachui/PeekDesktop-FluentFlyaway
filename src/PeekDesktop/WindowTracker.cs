@@ -13,7 +13,9 @@ namespace PeekDesktop;
 public sealed class WindowTracker
 {
     private const int AnimationSteps = 30;
-    private const int AnimationDurationMs = 200;
+    private const int DefaultAnimationDurationMs = 200;
+    private const int MinAnimationDurationMs = 40;
+    private const int MaxAnimationDurationMs = 1000;
     private const int OffscreenMargin = 64;
 
     private readonly List<WindowInfo> _savedWindows = new();
@@ -27,6 +29,24 @@ public sealed class WindowTracker
     /// Reset to false by the caller after checking.
     /// </summary>
     public bool CancelAnimation { get; set; }
+
+    /// <summary>
+    /// Speed multiplier for the FlyAway peek/restore animation. 1.0 keeps the
+    /// historical 200 ms; 2.0 is twice as fast, 0.5 is twice as slow.
+    /// </summary>
+    public double AnimationSpeed { get; set; } = 1.0;
+
+    private int AnimationDurationMs
+    {
+        get
+        {
+            double speed = double.IsFinite(AnimationSpeed) && AnimationSpeed > 0 ? AnimationSpeed : 1.0;
+            return (int)Math.Clamp(DefaultAnimationDurationMs / speed, MinAnimationDurationMs, MaxAnimationDurationMs);
+        }
+    }
+
+    /// <summary>Resolved animation duration for the current speed (exposed for the interop harness).</summary>
+    internal int CurrentAnimationDurationMs => AnimationDurationMs;
 
     /// <summary>
     /// Snapshot all visible, non-system top-level windows and their placements.
@@ -392,7 +412,9 @@ public sealed class WindowTracker
         if (windows.Count == 0)
             return;
 
-        int sleepMs = Math.Max(1, AnimationDurationMs / AnimationSteps);
+        int durationMs = AnimationDurationMs;
+        int sleepMs = Math.Max(1, durationMs / AnimationSteps);
+        AppDiagnostics.Log($"Animation: {durationMs}ms over {AnimationSteps} steps (speed={AnimationSpeed:0.##}x)");
         const uint flags = NativeMethods.SWP_NOACTIVATE
                          | NativeMethods.SWP_NOZORDER
                          | NativeMethods.SWP_NOOWNERZORDER

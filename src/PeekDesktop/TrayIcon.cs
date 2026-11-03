@@ -25,6 +25,10 @@ internal sealed class TrayIcon : IDisposable
     private const uint ID_UPDATES = 21;
     private const uint ID_AUTO_UPDATES = 22;
     private const uint ID_EXIT = 30;
+    private const uint ID_ANIM_SPEED_BASE = 40;
+
+    /// <summary>Selectable FlyAway animation speed multipliers (1.0 = 200 ms).</summary>
+    private static readonly double[] AnimationSpeeds = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 3.0, 4.0];
 
     private readonly Win32TrayIcon _trayIcon;
     private readonly Win32MessageLoop _messageLoop;
@@ -111,6 +115,18 @@ internal sealed class TrayIcon : IDisposable
         menu.AddSeparator();
         menu.AddItem(ID_MODE_NATIVE, Strings.ShowDesktopMode, () => SetPeekMode(PeekMode.NativeShowDesktop), _settings.PeekMode == PeekMode.NativeShowDesktop);
         menu.AddItem(ID_MODE_FLYAWAY, Strings.FlyAwayMode, () => SetPeekMode(PeekMode.FlyAway), _settings.PeekMode == PeekMode.FlyAway);
+
+        Win32Menu speedMenu = menu.AddSubmenu(Strings.AnimationSpeedMenu, _settings.PeekMode == PeekMode.FlyAway);
+        for (int i = 0; i < AnimationSpeeds.Length; i++)
+        {
+            double speed = AnimationSpeeds[i];
+            speedMenu.AddItem(
+                ID_ANIM_SPEED_BASE + (uint)i,
+                Strings.AnimationSpeedItem(speed),
+                () => SetAnimationSpeed(speed),
+                Math.Abs(_settings.AnimationSpeed - speed) < 0.001);
+        }
+
         menu.AddSeparator();
         menu.AddItem(ID_ABOUT, Strings.AboutMenu, ShowAbout);
         menu.AddItem(ID_UPDATES, Strings.CheckForUpdates, CheckForUpdates);
@@ -181,6 +197,13 @@ internal sealed class TrayIcon : IDisposable
         _settings.PeekMode = peekMode;
         _desktopPeek.SetPeekMode(peekMode);
         _trayIcon.UpdateTooltip(Strings.TooltipForMode(peekMode));
+        _settings.Save();
+    }
+
+    private void SetAnimationSpeed(double speed)
+    {
+        _settings.AnimationSpeed = Settings.NormalizeAnimationSpeed(speed);
+        _desktopPeek.SetAnimationSpeed(_settings.AnimationSpeed);
         _settings.Save();
     }
 

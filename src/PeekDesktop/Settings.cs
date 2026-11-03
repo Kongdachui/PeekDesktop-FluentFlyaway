@@ -27,6 +27,13 @@ public sealed class Settings
     public bool RestoreHiddenWindowsOnAppOpen { get; set; } = true;
     public bool AutoCheckForUpdates { get; set; } = true;
     public PeekMode PeekMode { get; set; } = PeekMode.NativeShowDesktop;
+    public double AnimationSpeed { get; set; } = 1.0;
+
+    /// <summary>Slowest supported FlyAway animation speed multiplier.</summary>
+    public const double MinAnimationSpeed = 0.25;
+
+    /// <summary>Fastest supported FlyAway animation speed multiplier.</summary>
+    public const double MaxAnimationSpeed = 4.0;
 
     public static Settings Load()
     {
@@ -39,6 +46,7 @@ public sealed class Settings
                 bool shouldSave = !JsonContainsProperty(jsonBytes, "RestoreHiddenWindowsOnAppOpen"u8)
                     || !JsonContainsProperty(jsonBytes, "AutoCheckForUpdates"u8)
                     || !JsonContainsProperty(jsonBytes, "PeekOnDesktopClick"u8)
+                    || !JsonContainsProperty(jsonBytes, "AnimationSpeed"u8)
                     || missingTaskbarClickSetting;
                 Settings settings = DeserializeUtf8(jsonBytes);
                 if (missingTaskbarClickSetting)
@@ -49,6 +57,14 @@ public sealed class Settings
                 {
                     AppDiagnostics.Log($"Unsupported peek mode '{settings.PeekMode}' migrated to {normalizedMode}.");
                     settings.PeekMode = normalizedMode;
+                    shouldSave = true;
+                }
+
+                double normalizedSpeed = NormalizeAnimationSpeed(settings.AnimationSpeed);
+                if (Math.Abs(settings.AnimationSpeed - normalizedSpeed) > 0.0001)
+                {
+                    AppDiagnostics.Log($"Animation speed '{settings.AnimationSpeed}' normalized to {normalizedSpeed}.");
+                    settings.AnimationSpeed = normalizedSpeed;
                     shouldSave = true;
                 }
 
@@ -79,6 +95,18 @@ public sealed class Settings
         }
     }
 
+    /// <summary>
+    /// Clamps a user-supplied animation speed into the supported range.
+    /// Non-finite, zero and negative values fall back to the default (1.0).
+    /// </summary>
+    public static double NormalizeAnimationSpeed(double speed)
+    {
+        if (!double.IsFinite(speed) || speed <= 0)
+            return 1.0;
+
+        return Math.Clamp(speed, MinAnimationSpeed, MaxAnimationSpeed);
+    }
+
     private static PeekMode NormalizePeekMode(PeekMode peekMode)
     {
         return peekMode switch
@@ -89,7 +117,7 @@ public sealed class Settings
         };
     }
 
-    private static Settings DeserializeUtf8(ReadOnlySpan<byte> utf8Json)
+    internal static Settings DeserializeUtf8(ReadOnlySpan<byte> utf8Json)
     {
         var settings = new Settings();
         var reader = new Utf8JsonReader(utf8Json);
@@ -150,6 +178,11 @@ public sealed class Settings
                 reader.Read();
                 settings.PeekMode = (PeekMode)reader.GetInt32();
             }
+            else if (reader.ValueTextEquals("AnimationSpeed"u8))
+            {
+                reader.Read();
+                settings.AnimationSpeed = reader.GetDouble();
+            }
             else
             {
                 reader.Skip();
@@ -183,7 +216,7 @@ public sealed class Settings
         return false;
     }
 
-    private byte[] SerializeUtf8()
+    internal byte[] SerializeUtf8()
     {
         var buffer = new ArrayBufferWriter<byte>();
         using var writer = new Utf8JsonWriter(buffer, new JsonWriterOptions { Indented = true });
@@ -198,6 +231,7 @@ public sealed class Settings
         writer.WriteBoolean("RestoreHiddenWindowsOnAppOpen"u8, RestoreHiddenWindowsOnAppOpen);
         writer.WriteBoolean("AutoCheckForUpdates"u8, AutoCheckForUpdates);
         writer.WriteNumber("PeekMode"u8, (int)PeekMode);
+        writer.WriteNumber("AnimationSpeed"u8, AnimationSpeed);
         writer.WriteEndObject();
 
         writer.Flush();

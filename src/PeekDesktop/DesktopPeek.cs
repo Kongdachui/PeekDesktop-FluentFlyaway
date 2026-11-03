@@ -55,6 +55,7 @@ public sealed class DesktopPeek : IDisposable
         _restoreHiddenWindowsOnAppOpen = settings.RestoreHiddenWindowsOnAppOpen;
         _peekOnDesktopClick = settings.PeekOnDesktopClick;
         DesktopDetector.PeekOnTaskbarClick = settings.PeekOnTaskbarClick;
+        _windowTracker.AnimationSpeed = Settings.NormalizeAnimationSpeed(settings.AnimationSpeed);
         AppDiagnostics.Log("DesktopPeek created");
         _mouseHook.DesktopClicked += OnDesktopClicked;
         _mouseHook.DesktopIconClicked += OnDesktopIconClicked;
@@ -131,6 +132,12 @@ public sealed class DesktopPeek : IDisposable
         AppDiagnostics.Log("Applying newly selected peek mode immediately");
         RestoreWindows();
         PeekDesktopNow();
+    }
+
+    public void SetAnimationSpeed(double speed)
+    {
+        _windowTracker.AnimationSpeed = Settings.NormalizeAnimationSpeed(speed);
+        AppDiagnostics.Log($"Animation speed set to {_windowTracker.AnimationSpeed:0.##}x");
     }
 
     private static PeekMode NormalizePeekMode(PeekMode peekMode)

@@ -10,13 +10,24 @@ namespace PeekDesktop;
 internal sealed class Win32Menu : IDisposable
 {
     private IntPtr _hMenu;
-    private readonly List<(uint id, Action action)> _items = new();
+    private readonly List<(uint id, Action action)> _items;
+    private readonly List<Win32Menu> _submenus = new();
+    private readonly bool _ownsHandle;
     private bool _disposed;
 
     public Win32Menu()
+        : this(new List<(uint id, Action)>(), ownsHandle: true)
     {
+    }
+
+    private Win32Menu(List<(uint id, Action)> sharedItems, bool ownsHandle)
+    {
+        _items = sharedItems;
+        _ownsHandle = ownsHandle;
         _hMenu = CreatePopupMenu();
     }
+
+    internal IntPtr Handle => _hMenu;
 
     public void AddItem(uint id, string text, Action onClick, bool isChecked = false)
     {
@@ -25,6 +36,23 @@ internal sealed class Win32Menu : IDisposable
             flags |= MF_CHECKED;
         AppendMenuW(_hMenu, flags, (nuint)id, text);
         _items.Add((id, onClick));
+    }
+
+    /// <summary>
+    /// Adds a submenu. Click actions share the owner's action table so item
+    /// commands reported by TrackPopupMenuEx for nested items still resolve.
+    /// </summary>
+    public Win32Menu AddSubmenu(string text, bool isEnabled = true)
+    {
+        var submenu = new Win32Menu(_items, ownsHandle: false);
+        _submenus.Add(submenu);
+
+        uint flags = MF_POPUP;
+        if (!isEnabled)
+            flags |= MF_GRAYED;
+
+        AppendMenuW(_hMenu, flags, (nuint)submenu._hMenu, text);
+        return submenu;
     }
 
     public void AddSeparator()
@@ -59,21 +87,49 @@ internal sealed class Win32Menu : IDisposable
         PostMessageW(hwnd, 0 /*WM_NULL*/, IntPtr.Zero, IntPtr.Zero);
 
         if (cmd != 0)
+            Invoke(cmd);
+    }
+
+    /// <summary>
+    /// Executes the action registered for a command id. Returns false when the
+    /// id is unknown. Click actions from nested submenus resolve through the
+    /// shared table, which is what this lookup relies on.
+    /// </summary>
+    internal bool Invoke(uint command)
+    {
+        foreach (var (id, action) in _items)
         {
-            foreach (var (id, action) in _items)
+            if (id == command)
             {
-                if (id == cmd)
-                {
-                    action();
-                    break;
-                }
+                action();
+                return true;
             }
         }
+
+        return false;
     }
 
     public void Dispose()
     {
         if (_disposed) return;
+        _disposed = true;
+
+        // Destroy the top-level menu first: on Windows this also destroys the
+        // submenus attached to it, so the explicit child destroys below are only
+        // a safety net for builds that do not cascade (they fail harmlessly).
+        if (_hMenu != IntPtr.Zero)
+        {
+            DestroyMenu(_hMenu);
+            _hMenu = IntPtr.Zero;
+        }
+
+        foreach (var submenu in _submenus)
+            submenu.DisposeDetached();
+        _submenus.Clear();
+    }
+
+    private void DisposeDetached()
+    {
         _disposed = true;
         if (_hMenu != IntPtr.Zero)
         {
@@ -86,6 +142,8 @@ internal sealed class Win32Menu : IDisposable
     private const uint MF_STRING = 0x0000;
     private const uint MF_SEPARATOR = 0x0800;
     private const uint MF_CHECKED = 0x0008;
+    private const uint MF_POPUP = 0x0010;
+    private const uint MF_GRAYED = 0x0001;
     private const uint MF_UNCHECKED = 0x0000;
     private const uint MF_BYCOMMAND = 0x0000;
     private const uint TPM_RETURNCMD = 0x0100;
